@@ -1,46 +1,31 @@
-/*
- * MIT-WPU - Programming and Problem Solving Lab
- * Assignment No. 09
- * Problem Statement: Write a C program to copy contents of one file
- *                    to another using file handling.
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 
 int main()
 {
-    FILE *source, *destination;     /* Declare two file pointers */
+    FILE *source, *destination;
     char ch;
 
-    /* Open source file in read mode */
     source = fopen("input.txt", "r");
-
-    /* Check if source file is opened successfully */
     if (source == NULL)
     {
         printf("Error: Cannot open source file input.txt\n");
         exit(1);
     }
 
-    /* Open destination file in write mode */
     destination = fopen("output.txt", "w");
-
-    /* Check if destination file is opened successfully */
     if (destination == NULL)
     {
         printf("Error: Cannot open destination file output.txt\n");
-        fclose(source);             /* Close source file before exiting */
+        fclose(source);
         exit(1);
     }
 
-    /* Read from source and write to destination until end of file */
     while ((ch = fgetc(source)) != EOF)
     {
         fputc(ch, destination);
     }
 
-    /* Close both files */
     fclose(source);
     fclose(destination);
 
